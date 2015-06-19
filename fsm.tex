@@ -1,0 +1,65 @@
+\section{Finite State Machine (FSM)}
+
+\subsection{M\'aquina de Estado} 
+Las \emph{M\'aquinas de Estado} denotan una familia de notaciones que tienen: \begin{inparaenum}[(a)] \item Estados; \item Transiciones; y \item Etiquetas \end{inparaenum}.
+
+Por ejemplo: Statecharts, FSM, LTS, Aut\'omatas, Timed Aut\'omatas, etc. 
+
+\subsection{LTS}
+
+\begin{definicion}[LTS]
+ Sea \emph{Estados} el universo de estados, \emph{Act} el universo de acciones observables, y $\textit{Act}_\tau = \textit{Act } \cup \{\tau\}$ ($\tau$ es la acci\'on no observable o silenciosa).
+ 
+ Un \emph{LTS} es una tupla $P = \langle S,L,\Delta,s_0 \rangle$, donde $S \subseteq \textit{Estados}$ es un conjunto finito, $L\subseteq \textit{Act}_\tau$ es un conjunto de etiquetas, $\Delta \subseteq (S \times L \times S)$ es un conjunto de transiciones etiquetadas, y $s_0 \in S$ es el estado inicial. 
+ 
+ Definimos el alfabeto de comunicaciones de $P$ como $\alpha(P) = L \backslash \{\tau\}$. \\
+ 
+ Ej: $FSM_A = \langle \{1,2,3\},\{a,d,c\},\{(1,a,2),(2,d,3),(3,c,1)\},1 \rangle$
+\end{definicion}
+
+\begin{definicion}[Ejecuci\'on]
+ Sea $P = \langle S,L,\Delta,s_0 \rangle$ una LTS. Una ejecuci\'on de $P$ es una secuencia $w = q_0l_0q_1l_1\dots$ donde para todo $i\in[0,w/2)$, $q_i$ es un estado y $l_i\in L$ tal que $q_0 = q$ y $(q_i,l_i,q_{i+1})\in \Delta$.
+ 
+ Ej: Las ejecuciones de $FSM_A$ son $(1,a,2)$, $(1,a,2)(2,d,3)$ y  $(1,a,2)(2,d,3)(3,c,1)$
+\end{definicion}
+
+\begin{definicion}[Proyecci\'on]
+ Sea $w$ una palabra $w_0w_1w_2\dots$ y $A$ un alfabeto. La proyecci\'on de $w$ en $A$, que se denota como $w\lvert_A$, es el resultado de eliminar de $w$ todos los $w_i$ que no est\'an en $A$. 
+\end{definicion}
+
+\begin{definicion}[Trazas]
+ Sea $P$ una LTS. Una palabra $w$ del alfabeto $\alpha(P)$ es una traza de $P$ si hay una ejecuci\'on $w'$ de $P$ tal que $w=w'\lvert_{\alpha(P)}$. Notar que las trazas no incluye acciones $\tau$. 
+ 
+ Tambi\'en se define $tr(P) = \{w | w \text{ es traza de } P \}$
+\end{definicion}
+
+\begin{definicion}[Transitar]
+ Una LTS $P=\langle S,L,\Delta,q\rangle$ transita con una etiqueta $l$ a una LTS $P'$ si $P'=\langle S,L,\Delta,q'\rangle$ y $(q,l,q') \in \Delta$.
+ 
+ Notaci\'on: $P \overset{l}{\longrightarrow} P'$
+\end{definicion}
+
+\begin{definicion}[Composici\'on Paralela]
+ Sean $P_1$ y $P_2$ LTSs, con $P_i = \langle S_i, L_i, \Delta_i, q_i\rangle$. La composici\'on paralela $P_1||P_2$ es una LTS $\langle S, L,\Delta, (q_1,q_2) \rangle$ con $S = S_1 \times S_2$, $L = L_1 \times L_2$ y $\Delta \subseteq (S \times \Delta_1 \cup \Delta_2 \times S)$ formada por:
+ 
+ \begin{itemize}
+  \item $((s,t),a,(s',t)) \in \Delta$, si $(s,a,s')\in\Delta_1$, $a\in\alpha(P_1)$ y $a\notin\alpha(P_2)$.
+  
+  \item $((s,t),a,(s,t')) \in \Delta$, si $(t,a,t')\in\Delta_2$, $a\notin\alpha(P_1)$ y $a\in\alpha(P_2)$.
+  
+  \item $((s,t),a,(s',t')) \in \Delta$, si $(s,a,s')\in\Delta_1$, $(t,a,t')\in\Delta_2$, $a\in\alpha(P_1)\cap\alpha(P_2)$
+ \end{itemize}
+
+ \ponerGrafico{images/fsm_composicion1.pdf}{Ejemplo de composici\'on 1}{0.5}{composicion1}
+ \ponerGrafico{images/fsm_composicion2.pdf}{Ejemplo de composici\'on 2}{0.5}{composicion2}
+ 
+ %%%%%%%%%%%%
+ % la definicion de las diapos que no entiendo
+ %%%%%%%%%%%%
+ %\begin{eqnarray}
+ % \frac{P_1 \overset{l}{\longrightarrow} P_1'}{P_1||P_2 \overset{l}{\longrightarrow} P_1'||P_2} &\quad& (l\notin \alpha(P_2))\\
+ % \frac{P_2 \overset{l}{\longrightarrow} P_2'}{P_1||P_2 \overset{l}{\longrightarrow} P_1||P_2'} &\quad& (l\notin \alpha(P_2))\\
+ % \frac{P_1 \overset{l}{\longrightarrow} P_1' \quad\: P_2 \overset{l}{\longrightarrow} P_2'}{P_1||P_2 \overset{l}{\longrightarrow} P_1'||P_2'} &\quad& (l\notin \alpha(P_2))
+ % \end{eqnarray}
+
+\end{definicion}

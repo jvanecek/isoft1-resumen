@@ -1,0 +1,86 @@
+
+\section{Definiciones}
+\begin{enumerate}
+\item {\bf Aserci\'on descriptiva}: cosas que son o presumimos verdaderas en el mundo. Taxonomias: 
+  \begin{enumerate}
+    \item {\bf Propiedades del Dominio}: son las aserciones descriptivas que son propiedades fisicas. 
+    \item {\bf Hip\'otesis del Dominio}: propiedades fisicas que pueden ser cambiadas. 
+  \end{enumerate}
+  
+\item {\bf Aserciones prescriptivas}: cosas que esperamos que sean verdaderas. Dos tipos: 
+  \begin{enumerate}
+    \item {\bf Objetivos} (multi-agentes): acerca de fenomenos en el mundo. [Cosas que esperamos sean ciertas en el mundo una vez afectado por el sistema. ]. [asercion prescriptiva que el sistema debera satisfacer a traves de la cooperacion de sus agentes. ]
+    \item {\bf Requerimientos} (objetivo uni-agente): acerca de fenomenos en la interfaz. [Cosas que debemos hacer ciertas en la interfaz.]Taxonomias: 
+      \begin{enumerate}
+	  \item {\bf Expectativas}: responsabilidad de un agente externo
+	  \item {\bf Requerimientos}: responsabilidad de nuestro sistema
+      \end{enumerate}
+  \end{enumerate}
+  Los objetivos con fenomenos globales, los requerimientos son objetivos uniagentes concretos.
+
+\item {\bf Operaci\'on}: es una funci\'on que toma un estado del mundo y devuelve otro estado, en el que solo cambiaron las variables controladas por la maquina. Son introducidas por un objetivo uni-agente (requerimiento) del modelo de objetivos. Los requerimientos (2.2.2) inducen operaciones del software, y las expectativas (2.2.1) inducen operaciones de agentes. Consta de: 
+  \begin{itemize}
+    \item Operaci\'on: nombre
+    \item Responsable: actor responsable de la operaci\'on
+    \item Usuarios
+    \item Definici\'on: explicaci\'on de la operaci\'on
+    \item Entrada
+    \item Salida
+    \item Pre-condicion: condicion necesaria para que la operacion pueda realizarse.
+    \item Post-condicion: condicion garantizada despues de la operacion. 
+    \item Trigger: condicion que si se da, la operacion ocurre. 
+  \end{itemize}
+  
+\item {\bf Objeto conceptual}: denota una entidad o concepto del dominio del problema. Puede ser: objeto pasivo, activo, personas, estructuras, etc. 
+
+\item {\bf Clase conceptual}: denota un conjunto de objetos conceptuales que comparten caracteristicas comunes. 
+
+\item {\bf Comportamiento} es el conjunto de respuestas, reacciones o movimientos hechos por un organismo en cualquier situaci\'on. 
+
+\end{enumerate}
+
+\section{Modelos}
+
+\begin{enumerate}
+\item {\bf Modelo de Jackson}: estructura el mundo, la maquina y la interfaz. Aserciones descriptivas y prescriptivas. 
+
+\item {\bf Modelo de agentes}: estructura para los fenomenos del mundo.
+
+{\bf Diagrama de contexto}
+\begin{itemize}
+  \item[+] \underline{Nodos}: agentes, m\'aquina. 
+  \item[+] \underline{Aristas}: fen\'omenos
+\end{itemize}
+
+\item {\bf Modelo de objetivos}: estructura para las aserciones del mundo. Deberan estar dadas en funcion de fenomenos en la interfaz de agentes, y deben ser declarativas, no operacionales (describir el objetivo y no el como). 
+
+{\bf Diagrama de objetivos}
+\begin{itemize}
+  \item[+] \underline{Nodos}: Objetivos duros y blandos, agentes, presunci\'on del dominio
+  \item[+] \underline{Aristas}: ``Contribuye a''
+\end{itemize}
+
+\item {\bf Modelo de operaciones}: estructura las operaciones. 
+
+{\bf Diagrama de casos de uso}
+\begin{itemize}
+  \item[+] \underline{Nodos}: Actor, M\'aquina, Caso de uso. 
+  \item[+] \underline{Aristas}: Participa en, Herencia, Inclusi\'on, Extend. 
+\end{itemize}
+
+\item {\bf Modelo conceptual}: estructura la definicion de los conceptos (sustativos asociados al dominio de problema) mas relevantes. 
+
+{\bf Diagrama de clases}
+\begin{itemize}
+  \item[+] \underline{Nodos}: rect\'angulos con el nombre de la clase, y debajo sus atributos.
+  \item[+] \underline{Aristas}: relaciones entre clases, con la cantidad y el nombre de la relaci\'on. 
+\end{itemize}
+
+Se usa {\bf OCL} para establecer las restricciones entre las relaciones.
+
+\item {\bf Modelo de comportamientos}: describen comportamientos de los agentes. Se separan en dos: basados en estados, y basados en interacciones. 
+
+{\bf Diagrama de actividad}
+      
+\end{enumerate}
+

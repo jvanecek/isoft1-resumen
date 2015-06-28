@@ -41,46 +41,119 @@
 
 \section{Modelos}
 
-\begin{enumerate}
-\item {\bf Modelo de Jackson}: estructura el mundo, la maquina y la interfaz. Aserciones descriptivas y prescriptivas. 
+\subsection{Modeo de Jackson}
 
-\item {\bf Modelo de agentes}: estructura para los fenomenos del mundo.
+  Estructura el mundo, la maquina y la interfaz. Aserciones descriptivas y prescriptivas. 
 
-{\bf Diagrama de contexto}
-\begin{itemize}
-  \item[+] \underline{Nodos}: agentes, m\'aquina. 
-  \item[+] \underline{Aristas}: fen\'omenos
-\end{itemize}
+\subsection{Modelo de agentes}
 
-\item {\bf Modelo de objetivos}: estructura para las aserciones del mundo. Deberan estar dadas en funcion de fenomenos en la interfaz de agentes, y deben ser declarativas, no operacionales (describir el objetivo y no el como). 
+  Estructura para los fenomenos del mundo.
 
-{\bf Diagrama de objetivos}
-\begin{itemize}
-  \item[+] \underline{Nodos}: Objetivos duros y blandos, agentes, presunci\'on del dominio
-  \item[+] \underline{Aristas}: ``Contribuye a''
-\end{itemize}
+  \subsubsection{Diagrama de contexto}
 
-\item {\bf Modelo de operaciones}: estructura las operaciones. 
+  \begin{itemize}
+    \item[+] \underline{Nodos}: agentes, m\'aquina. 
+    \item[+] \underline{Aristas}: fen\'omenos
+  \end{itemize}
 
-{\bf Diagrama de casos de uso}
-\begin{itemize}
-  \item[+] \underline{Nodos}: Actor, M\'aquina, Caso de uso. 
-  \item[+] \underline{Aristas}: Participa en, Herencia, Inclusi\'on, Extend. 
-\end{itemize}
+  \ponerGrafico{images/contexto.pdf}{Diagrama de contexto}{0.6}{contexto}
+  
+\subsection{Modelo de objetivos}
 
-\item {\bf Modelo conceptual}: estructura la definicion de los conceptos (sustativos asociados al dominio de problema) mas relevantes. 
+  Estructura para las aserciones del mundo. Deberan estar dadas en funcion de fenomenos en la interfaz de agentes, y deben ser declarativas, no operacionales (describir el objetivo y no el como). 
 
-{\bf Diagrama de clases}
-\begin{itemize}
-  \item[+] \underline{Nodos}: rect\'angulos con el nombre de la clase, y debajo sus atributos.
-  \item[+] \underline{Aristas}: relaciones entre clases, con la cantidad y el nombre de la relaci\'on. 
-\end{itemize}
+  \subsubsection{Diagrama de objetivos}
+  \begin{itemize}
+    \item[+] \underline{Nodos}: Objetivos duros y blandos, agentes, presunci\'on del dominio
+    \item[+] \underline{Aristas}: ``Contribuye a''
+  \end{itemize}
 
-Se usa {\bf OCL} para establecer las restricciones entre las relaciones.
+  \ponerGrafico{images/objetivos.pdf}{Diagrama de objetivos}{0.6}{objetivos}
 
-\item {\bf Modelo de comportamientos}: describen comportamientos de los agentes. Se separan en dos: basados en estados, y basados en interacciones. 
+\subsection{Modelo de operaciones}
 
-{\bf Diagrama de actividad}
-      
-\end{enumerate}
+  Sirve para estructura las operaciones y poder validarlas. 
+
+  \subsubsection{Diagrama de casos de uso}
+  
+  Describen bajo la forma de acciones y reacciones las operaciones provistas por una m\'aquina desde el punto de vista del usuario, pero solo interesan las interacciones m\'aquina-agente. 
+  
+  Delimita el alcance del software a construir. 
+  
+  \ponerGrafico{images/casos_de_uso.pdf}{Diagrama de Casos de Uso}{0.6}{casos_de_uso}
+  
+  \begin{itemize}
+    \item[+] \underline{Nodos}: Actor, M\'aquina, Caso de uso. 
+    \item[+] \underline{Aristas}: Participa en, Herencia, Inclusi\'on, Extend. 
+  \end{itemize}
+  
+  Cada caso de uso involucra participaci\'on de actores, y esta tiene que ser explicada en el caso de uso detallado. 
+  
+  \subsubsection*{Caso de uso detallado} 
+  
+  Especifica una o varias secuencias de acci\'on que el sistema puede llevar a cabo interactuando con sus actores. 
+  
+  El nombre se expresa con un verbo en gerundio. 
+  
+  \begin{casodeuso}
+    \cutitle{CU E}
+    \cuactors{Actores que participan}
+    \cupre{Precondicion del caso de uso}
+    \cupost{Postcondicion}
+    \cucourse{
+    1. ... & \\
+    2. EXTIENDE Caso de uso CU D & \\
+    3. FIN CU & \\
+    }
+  \end{casodeuso}
+
+  \begin{casodeuso}
+    \cutitle{CU C}
+    \cuactors{Actores que participan}
+    \cupre{Precondicion del caso de uso}
+    \cupost{Postcondicion}
+    \cucourse{
+    1. ... & \\
+    2. USA Caso de uso CU B & \\
+    3. FIN CU & \\
+    }
+  \end{casodeuso}
+  
+  Durante la ejecuci\'on de un caso de uso suelen aparecer errores o excepciones, lo que produce un desv\'io del curso normal al curso alternativo. 
+  
+  \subsubsection*{Sem\'antica de las relaciones}
+  
+  \begin{enumerate}
+   \item[{\bf Extensi\'on:}] Decir que el caso de uso B extiende al caso de uso A, significa que hay instancias de A que incluir\'an, a veces, el comportamiento del caso de uso B. 
+   
+   Puede que hayan escenarios descritos por el caso de uso B que no aparecen en escenarios denotados por A. Ejemplo,
+   
+   \ponerGrafico{images/caso_de_uso_extend.pdf}{}{0.6}{casos_de_uso_extends}
+   
+   \item[{\bf Inclusi\'on:}] Decir que el caso de uso A usa (o incluye) al caso de uso B, significa que toda instancia de A incluye al comportamiento descrito por el caso de uso B. 
+   
+   Puede que hayan escenarios descritos por el caso de uso B que no aparecen en escenarios denotados por A. Ejemplo,
+   
+   \ponerGrafico{images/caso_de_uso_includes.pdf}{}{0.6}{casos_de_uso_extends}
+  \end{enumerate}
+
+ 
+\subsection{Modelo conceptual}
+
+  Estructura la definicion de los conceptos (sustativos asociados al dominio de problema) mas relevantes. 
+
+  \subsubsection{Diagrama de clases}
+  \begin{itemize}
+    \item[+] \underline{Nodos}: rect\'angulos con el nombre de la clase, y debajo sus atributos.
+    \item[+] \underline{Aristas}: relaciones entre clases, con la cantidad y el nombre de la relaci\'on. 
+  \end{itemize}
+
+  Se usa {\bf OCL} para establecer las restricciones entre las relaciones.
+
+\subsection{Modelo de comportamientos}
+
+  Describen comportamientos de los agentes. Se separan en dos: basados en estados, y basados en interacciones. 
+
+  \subsubsection{Diagrama de actividad}
+
 
